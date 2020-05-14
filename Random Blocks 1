@@ -1,0 +1,73 @@
+===============================================================================
+Battle Calculators
+===============================================================================
+SET D=100
+SET RH=163
+SET R=%Random% 
+SET /A H=%R%/2
+SET /A RH=%R%/%D%
+ECHO %H% : %R%/%D%
+===============================================================================
+SET D=100 && SET RH=16383 && SET R=%Random% 
+(SET /A H=%R%/2) && (SET /A RV=%R%/%D%)
+IF /I %R% LSS %RH% (SET B=0) ELSE (SET B=1)
+ECHO %H% : %R%/%D% - %B%
+===============================================================================
+SET D=100 
+SET RH=16383
+SET R=%Random%
+SET /A H=%R%/2
+SET /A RV=%R%/%D%
+IF /I %R% LSS %RH% (SET B=0) ELSE (SET B=1)
+ECHO %H% : %R%/%D% - %B%
+===============================================================================
+SET /A R=%Random% && SET /A H=16384 && SET /A D=100
+SET /A RV=%R%/%D% 
+IF /I %R% LEQ %H% (SET /A B=0) ELSE (SET /A B=1)
+IF %B%==0 (ECHO %H% : %R%/%D% - %B% ZERO) ELSE (ECHO %H% : %R%/%D% - %B% ONE)
+===============================================================================
+SET /A R=%Random%
+SET /A H = 16384
+SET /A D = 100
+SET /A RV = %R% / %D% 
+IF /I %R% LEQ %H% (SET /A B=0) ELSE (SET /A B=1)
+IF %B%==0 (ECHO %H% : %R%/%D% - %B% ZERO) ELSE (ECHO %H% : %R%/%D% - %B% ONE)
+===============================================================================
+SET /A RandomHalf=16384 && SET /A Divisor=100
+SET /A RandomValue1=%Random%/"%Divisor%" 
+IF /I %Random% LEQ %RandomHalf% (SET /A Binary1=0) ELSE (SET /A Binary1=1)
+IF %Binary1%==0 (ECHO ONE  %RandomHalf% : %Random%/%Divisor% - %Binary1%) ELSE (ECHO ZERO %RandomHalf% : %Random%/%Divisor% - %Binary1%)
+===============================================================================
+SET RandomHalf=16384 && SET /A Divisor=100 && SET /A RandomValue1=%random%/"%Divisor%"
+IF /I %Random% LEQ %RandomHalf% (SET /A Binary1=0) ELSE (SET /A Binary1=1) && (IF /I %Binary1%==0 (ECHO ZERO) ELSE (ECHO ONE))
+ECHO %RandomHalf% %Random%/%Divisor% = %Binary1%
+===============================================================================
+SET RandomHalf=16384 && SET /A Divisor=100 && SET /A RandomValue1=%random%/"%Divisor%"
+IF /I %Random% LEQ %RandomHalf% ( SET /A Binary1=0 ) ELSE ( SET /A Binary1=1 ) 
+IF /I %Binary1%==0 (ECHO ZERO) ELSE (ECHO ONE)
+ECHO %RandomHalf% %Random%/%Divisor% = %Binary1%
+===============================================================================
+ECHO  Divisor=%Divisor%
+ECHO. 
+ECHO  %dam% : RAW DAMAGE : %B3%
+
+IF /I %dam% GEQ 162 (SET /A B3=1 ) ELSE (SET B3=0)
+IF /I %dam% GTR 100 (SET /A Difference=%dam%-100) ELSE (SET Difference=0)
+IF /I %dam% GTR 100 (SET B=1) ELSE (SET B=0)
+
+SET /A dam2=%dam%-%Difference%
+
+IF /I %dam2% LSS 100 (SET /A B2=0 ) ELSE (SET B2=1)
+
+Echo  %dam2% : REDUCED TO : %B2%
+echo  %Difference% : DIFFERENCE : %B%
+===============================================================================
+SET Divisor=100
+SET /A dam=%random%/"%Divisor%"
+IF /I %dam% GEQ 162 (SET /A B3=1 ) ELSE (SET B3=0)
+IF /I %dam% GTR 100 (SET /A Difference=%dam%-100) ELSE (SET Difference=0)
+IF /I %dam% GTR 100 (SET B=1) ELSE (SET B=0)
+SET /A dam2=%dam%-%Difference%
+IF /I %dam2% LSS 100 (SET /A B2=0 ) ELSE (SET B2=1)
+ECHO %RandomHalf% %Random%/%Divisor% = %Binary1%
+===============================================================================

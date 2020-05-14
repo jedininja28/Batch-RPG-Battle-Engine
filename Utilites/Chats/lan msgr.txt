@@ -1,0 +1,53 @@
+The Dos Chat – Lan Messenger
+This is a LAN Messenger which allows you to chat with friends on local network. The Dos based chat program is just like a chat program but only for LAN. What you need to have is: This tool, a desire for communication and an IP / Machine Name. In one line, its a “batch program for chatting”.
+
+To Install LAN Messenger / Dos Chat:
+
+Download bat files: setup-dos-chat.bat, dos-chat.bat
+Execute: setup-dos-cat.bat
+To start LAN chatting
+Execute: dos-chat.bat
+
+The file setup-dos-chat.bat enables the Messenger Service on your windows machine. Or you can enable dos based chat manually by enabling Messenger Service.
+
+To manually enable Messenger Service:
+Start -> Run -> type: services.msc -> Press Enter
+Search for Messenger Service and enable it.
+The Code:
+
+
+@echo off
+
+mode con cols=75 lines=20
+
+TITLE Dos Chat – Lan Messenger by Krex :: Starting…
+
+COLOR 4F
+
+echo ********** Dos-Chat by Krex **********
+
+set /p n=Enter IP Address or Machine-Name:
+
+TITLE Chatting with – %n% – Lan Messenger by Krex: http://kedar.nitty-witty.com
+
+echo **********  Chatting with: %n%  **********
+
+:A
+
+set /p m=Message:
+
+net send %n% %m%
+
+Goto A
+
+: : : : : : : : : : : : : : : : : : : : : : : : : : :  : :  : : : : : :
+
+: : Dos-chat – A GNU/GPL Lan Messenger ;): :
+
+: : http://kedar.nitty-witty.com                          : :
+
+: : : : : : : : : : : : : : : : : : : : : : :  : : : : : : : : : : : : :
+
+I hope you’ll enjoy it.
+
+No related posts.

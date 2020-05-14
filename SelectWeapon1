@@ -1,0 +1,118 @@
+:SelectWeapon
+SET /A Weapon=1
+SET /A Armor=1
+TITLE STR:%STR% DEX:%DEX% INT:%INT% HitPoints:%HitPoints% Stamina:%Stamina% Energy:%Energy% Kill/Death:%Kill%/%Death% KDR:%KDR%
+CLS
+
+ECHO ===============================================
+ECHO                  Select Weapon
+ECHO ===============================================
+ECHO  1 = Defensive Stance           Gain 20 Energy
+ECHO  2 = Fists                      Cost  1 Energy
+ECHO  3 = SpiritBlade                Cost %SBecost% Energy
+ECHO  4 = SpaceLaser                 Cost 60 Energy
+ECHO ===============================================
+SET INPUT=
+SET /P INPUT=
+
+IF /I '%INPUT%'=='1' GOTO  DefensiveStance
+IF /I '%INPUT%'=='2' GOTO  Fists
+IF /I '%INPUT%'=='3' GOTO  SpiritBlade
+IF /I '%INPUT%'=='4' GOTO  SpaceLaser
+
+PAUSE>NUL
+GOTO start
+
+:DefensiveStance
+SET /A Weapon=%Weapon%+1
+SET /A Armor=%Armor%+3
+	
+ECHO ===============================================
+ECHO  Positioning your Stance and Montions more 
+ECHO  defensivly allows you to build up some energy.
+ECHO ===============================================  
+ECHO  +20 Energy       %Weapon% Damage         %Armor% Armor
+ECHO ===============================================
+
+SET /A Energy=%Energy%+20
+
+PAUSE>NUL
+GOTO start
+
+:Fists
+IF /I %Energy% LSS 1 GOTO NeedMoreEnergy
+SET /A Weapon=%Weapon%+(%R%/3100)
+SET /A Armor=%Armor%+1
+ECHO ===============================================
+ECHO  Hand to hand combat is second nature to you, 
+ECHO  granting some defensive ability. 
+ECHO ===============================================  
+ECHO  -1 Energy       %Weapon% Damage         %Armor% Armor
+ECHO ===============================================
+
+SET /A Energy=%Energy%-1
+PAUSE>NUL
+GOTO start
+
+:SpiritBlade
+IF /I %Energy% LSS %SBecost% GOTO NeedMoreEnergy
+SET /A Weapon=%Weapon%+(%R%/2000)+(%SBecost%/3)
+
+ECHO ===============================================
+ECHO  The SpiritBlade is a wepaon only refered to
+ECHO  in lore and myth. The harden meterials that 
+ECHO  make it are said to be of magical origins.
+ECHO ===============================================  
+ECHO  -%SBecost% Energy       %Weapon% Damage         %Armor% Armor
+ECHO ===============================================
+SET /A SBecost=%SBecost%+2
+SET /A Energy=%Energy%-%SBecost%
+
+IF /I %mEnergy% GTR 60 SET /A mEnergy=%mEnergy%-2
+IF /I %Kill% GEQ 10 SET /A Weapon=%Weapon%+4
+IF /I %Kill% GEQ 10 SET Armor=1
+IF /I %Death% GEQ 10 SET /A SBecost=%SBecost%+1
+
+
+SET /p SBAttackHigh="You land a series of presision Strikes for %Damage%."
+SET AttackHigh="%SBAttackHigh%"
+
+::SET /I SBAttackLow="You attack for %Damage%." >NUL
+::SET /I AttackLow=%SBAttackLow%
+
+REM SET /P BlockHigh=
+REM SET /P BlockLow=
+REM SET /P MissHigh=
+REM SET /P MissLow=
+REM SET /P SpcialHigh=
+REM SET /P SpcialLow=
+
+PAUSE>NUL
+CLS
+GOTO start
+
+:SpaceLaser
+IF /I %Energy% LSS 60 GOTO NeedMoreEnergy
+SET /A Armor=0
+SET /A Weapon=20+(%R%/600)+(%R%/650)+(%R%/700)
+ECHO ===============================================
+ECHO  They say good things come to those who win
+ECHO  alot of epic battles. In this case the good
+ECHO  thing is a giant space laser!
+ECHO ===============================================  
+ECHO  -60 Energy         %Weapon% Damage          %Armor% Armor
+ECHO ===============================================
+
+SET /A Energy=%Energy%-60
+PAUSE>NUL
+GOTO start
+
+:NeedMoreEnergy
+CLS
+ECHO.
+ECHO ===============================================
+ECHO            You require more Energy!
+ECHO ===============================================
+PAUSE>NUL
+CLS
+GOTO SelectWeapon

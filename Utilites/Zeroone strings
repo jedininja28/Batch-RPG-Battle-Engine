@@ -1,0 +1,71 @@
+
+
+=========================================================================================================================
+::									    	  ZeroOne output strings 	 
+::	  (%R%/16384) - Because 16383.5 is half the max value of %random%(R) dividing R by 16384 will resault in 1 or 0
+=========================================================================================================================
+	
+	(SET /A zeroone=%Random%/16384) && ECHO %zeroone%
+	
+	(SET /A zeroone=%Random%/16384)
+	(if /I %zeroone% lss 2 echo %zeroone%)
+	(if /I %zeroone% equ 1 echo %zeroone%)
+	(if /I %zeroone% equ 0 echo %zeroone%)	
+	
+	(SET /A ZO=%Random%/16384)
+	(IF /I %ZO%==1 ( ECHO 1 ) ELSE ( ECHO 0 ))
+	
+	 ECHO %zeroone%
+	
+	(IF %random% GEQ 16383 (SET /A B=1) ELSE (SET /A B=0)) && ECHO %B%
+	
+	(SET /A zeroone=%Random%/16384)
+	if /I %zeroone% equ 1 (echo %zeroone%) else if /I %zeroone% equ 0 (echo %zeroone%)
+
+	::ECHO is OFF ERROR
+	((SET /A zeroone=%Random%/16384) && (ECHO %zeroone%))
+
+=========================================================================================================================
+::											May or may not work strings.
+=========================================================================================================================
+	::Quereyable pipe strings. out put 1 or 0
+	
+	(SET /A zeroone=%Random%/16384 >" "^)
+	
+	(for %%A in (SET /A zeroone=%Random%/16384 >" " do echo %%A >ECHO)
+	
+	(for %%A in (SET /A zeroone=%Random%/16384 >echo) do echo %%A
+	
+	(for %%A in (SET /A zeroone=%Random%/16384 >" ") do echo %%A
+	
+	IF /I %zeroone%==1 echo 1
+	IF /I %zeroone%==0 echo 0
+
+	SET /A zeroone=%Random%/16384 >Echo		
+		
+	(SET /A zeroone=%Random%/16384 >Echo)
+	
+	(for %%A in (SET /A zeroone=%Random%/16384 >echo) do echo %%A
+	
+	(for %%A in (SET /A zeroone=%Random%/16384 >" ") do echo %%A  
+	
+	for %%A in (SET /A zeroone=%Random%/16384 >echo) do set /a ZO==%%A
+	
+	::Requires admin Win 7
+	(SET /A zeroone=%Random%/16384 >" "^)
+	
+	
+	
+	REM FOR /L %%y IN (0, 1, 3) DO ECHO %%y
+
+REM :Start
+REM SET /A c=%c%+1
+REM IF /I %c% EQU 1 (ECHO 1) else IF /I %c% EQU 2 (ECHO 2) else IF  /I %c% EQU 3 (ECHO 3) else IF  /I %c% EQU 4 (ECHO 4) else IF  /I %c% GTR 4 set c=0 && GOTO START
+
+
+REM SET /A R0=%RANDOM%
+REM SET /A ZO=%R0%/8191 
+
+::SET /A R0=%RANDOM%
+::SET /A ZO=%R0%/16384 
+::IF /I %ZO% EQU 1 (GOTO W) ELSE (GOTO Q)
